@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy — Grow With Me</title>
+    <meta name="description" content="Privacy Policy for Grow With Me fitness tracker app. All data stored locally on your device.">
+    <style>
+        :root {
+            --accent: #7C3AED;
+            --accent-light: #A78BFA;
+            --accent-bg: rgba(124, 58, 237, 0.08);
+            --bg: #FFFFFF;
+            --bg-secondary: #F9FAFB;
+            --text: #111827;
+            --text-secondary: #6B7280;
+            --border: #E5E7EB;
+            --card-bg: #FFFFFF;
+            --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+            --highlight-bg: #F0E6FF;
+            --code-bg: #F3F4F6;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0F1117;
+                --bg-secondary: #1A1D2B;
+                --text: #F3F4F6;
+                --text-secondary: #9CA3AF;
+                --border: #2D3348;
+                --card-bg: #1A1D2B;
+                --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
+                --highlight-bg: rgba(124, 58, 237, 0.15);
+                --accent-bg: rgba(124, 58, 237, 0.12);
+                --code-bg: #1E2235;
+            }
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ---- Language Switcher Bar ---- */
+        .lang-bar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--bg);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.85);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .lang-bar {
+                background: rgba(15, 17, 23, 0.85);
+            }
+        }
+
+        .lang-bar-inner {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .lang-bar-brand {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: -0.01em;
+        }
+
+        .lang-bar-brand svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+
+        .lang-buttons {
+            display: flex;
+            gap: 4px;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            padding: 3px;
+        }
+
+        .lang-btn {
+            padding: 6px 14px;
+            font-size: 13px;
+            font-weight: 500;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            background: transparent;
+            color: var(--text-secondary);
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .lang-btn:hover {
+            color: var(--text);
+        }
+
+        .lang-btn.active {
+            background: var(--accent);
+            color: #FFFFFF;
+            box-shadow: 0 1px 3px rgba(124, 58, 237, 0.3);
+        }
+
+        /* ---- Main Container ---- */
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 40px 24px 80px;
+        }
+
+        /* ---- Header ---- */
+        .header {
+            text-align: center;
+            margin-bottom: 48px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-icon {
+            width: 80px;
+            height: 80px;
+            background: #111827;
+            border-radius: 18px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 14px rgba(124, 58, 237, 0.25);
+            overflow: hidden;
+        }
+
+        .header-icon svg {
+            width: 52px;
+            height: 52px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .header .subtitle {
+            font-size: 15px;
+            color: var(--text-secondary);
+            max-width: 480px;
+            margin: 0 auto 16px;
+        }
+
+        .effective-date {
+            display: inline-block;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--accent);
+            background: var(--accent-bg);
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+
+        /* ---- Privacy Highlight ---- */
+        .privacy-highlight {
+            background: var(--highlight-bg);
+            border: 1px solid rgba(124, 58, 237, 0.2);
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+
+        .privacy-highlight svg {
+            width: 22px;
+            height: 22px;
+            color: var(--accent);
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .privacy-highlight p {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* ---- Sections ---- */
+        .section {
+            margin-bottom: 36px;
+        }
+
+        .section h2 {
+            font-size: 20px;
+            font-weight: 650;
+            letter-spacing: -0.01em;
+            margin-bottom: 16px;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section h2 .section-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: var(--accent-bg);
+            color: var(--accent);
+            font-size: 13px;
+            font-weight: 700;
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+
+        .section p {
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            font-size: 15px;
+        }
+
+        .section ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 12px;
+        }
+
+        .section ul li {
+            position: relative;
+            padding-left: 24px;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+
+        .section ul li::before {
+            content: '';
+            position: absolute;
+            left: 2px;
+            top: 10px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent-light);
+        }
+
+        .data-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 16px 0;
+        }
+
+        .data-card-row {
+            display: flex;
+            align-items: baseline;
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+            gap: 12px;
+            font-size: 14px;
+        }
+
+        .data-card-row:last-child {
+            border-bottom: none;
+        }
+
+        .data-card-label {
+            font-weight: 600;
+            color: var(--text);
+            min-width: 140px;
+            flex-shrink: 0;
+        }
+
+        .data-card-value {
+            color: var(--text-secondary);
+        }
+
+        .no-data-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #ECFDF5;
+            color: #059669;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 6px;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .no-data-badge {
+                background: rgba(5, 150, 105, 0.15);
+                color: #34D399;
+            }
+        }
+
+        .no-data-badge svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* ---- Contact Card ---- */
+        .contact-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .contact-card a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-card a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 12px;
+            font-size: 15px;
+        }
+
+        .contact-row svg {
+            width: 18px;
+            height: 18px;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        /* ---- Footer ---- */
+        .footer {
+            margin-top: 60px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .footer .bundle-id {
+            font-family: 'SF Mono', SFMono-Regular, ui-monospace, 'Cascadia Code', Menlo, monospace;
+            font-size: 12px;
+            background: var(--code-bg);
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: var(--text-secondary);
+        }
+
+        /* ---- Separator between languages ---- */
+        .lang-separator {
+            margin: 64px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .lang-separator::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .lang-separator span {
+            position: relative;
+            display: inline-block;
+            background: var(--bg);
+            padding: 0 20px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        /* ---- Responsive ---- */
+        @media (max-width: 600px) {
+            .container {
+                padding: 28px 16px 60px;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .data-card-row {
+                flex-direction: column;
+                gap: 4px;
+            }
+
+            .data-card-label {
+                min-width: unset;
+            }
+
+            .privacy-highlight {
+                padding: 16px;
+                gap: 12px;
+            }
+
+            .section h2 {
+                font-size: 18px;
+            }
+
+            .contact-card {
+                padding: 18px;
+            }
+        }
+
+        /* ---- Language visibility ---- */
+        .lang-section {
+            display: none;
+        }
+
+        .lang-section.visible {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Language Switcher Bar -->
+    <nav class="lang-bar" role="navigation" aria-label="Language selector">
+        <div class="lang-bar-inner">
+            <div class="lang-bar-brand">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="14" y="42" width="10" height="22" rx="3" fill="#7C3AED"/>
+                    <rect x="24" y="48" width="52" height="10" rx="2" fill="#7C3AED" opacity="0.7"/>
+                    <rect x="76" y="42" width="10" height="22" rx="3" fill="#7C3AED"/>
+                    <rect x="8" y="46" width="6" height="14" rx="2" fill="#A78BFA"/>
+                    <rect x="86" y="46" width="6" height="14" rx="2" fill="#A78BFA"/>
+                    <polyline points="22,70 40,52 55,60 80,28" stroke="#A78BFA" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <polyline points="66,28 80,28 80,42" stroke="#A78BFA" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Grow With Me
+            </div>
+            <div class="lang-buttons" role="tablist" aria-label="Select language">
+                <button class="lang-btn active" role="tab" aria-selected="true" onclick="switchLang('en')" id="btn-en">English</button>
+                <button class="lang-btn" role="tab" aria-selected="false" onclick="switchLang('pl')" id="btn-pl">Polski</button>
+                <button class="lang-btn" role="tab" aria-selected="false" onclick="switchLang('both')" id="btn-both">Both</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+
+        <!-- ==================== ENGLISH VERSION ==================== -->
+        <div id="lang-en" class="lang-section visible" lang="en">
+
+            <header class="header">
+                <div class="header-icon">
+                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Dumbbell -->
+                        <rect x="14" y="42" width="10" height="22" rx="3" fill="#7C3AED"/>
+                        <rect x="24" y="48" width="52" height="10" rx="2" fill="#7C3AED" opacity="0.7"/>
+                        <rect x="76" y="42" width="10" height="22" rx="3" fill="#7C3AED"/>
+                        <rect x="8" y="46" width="6" height="14" rx="2" fill="#A78BFA"/>
+                        <rect x="86" y="46" width="6" height="14" rx="2" fill="#A78BFA"/>
+                        <!-- Upward arrow/chart -->
+                        <polyline points="22,70 40,52 55,60 80,28" stroke="#A78BFA" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <polyline points="66,28 80,28 80,42" stroke="#A78BFA" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <h1>Privacy Policy</h1>
+                <p class="subtitle">Grow With Me &mdash; Fitness &amp; Gym Tracker</p>
+                <span class="effective-date">Effective: February 20, 2026</span>
+            </header>
+
+            <div class="privacy-highlight">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                <p>Your privacy is our priority. Grow With Me stores all data exclusively on your device. We do not collect, transmit, or share any personal information. No accounts, no servers, no tracking.</p>
+            </div>
+
+            <!-- Section 1 -->
+            <div class="section">
+                <h2><span class="section-number">1</span> What Data We Collect</h2>
+                <p>Grow With Me may store the following information, entered by you, entirely on your device:</p>
+                <div class="data-card">
+                    <div class="data-card-row">
+                        <span class="data-card-label">Workout Data</span>
+                        <span class="data-card-value">Exercises, sets, reps, weights, and workout history</span>
+                    </div>
+                    <div class="data-card-row">
+                        <span class="data-card-label">Body Metrics</span>
+                        <span class="data-card-value">Body weight, measurements, and other fitness-related metrics you choose to log</span>
+                    </div>
+                    <div class="data-card-row">
+                        <span class="data-card-label">Progress Photos</span>
+                        <span class="data-card-value">Photos taken with the camera or selected from your photo library</span>
+                    </div>
+                    <div class="data-card-row">
+                        <span class="data-card-label">Preferences</span>
+                        <span class="data-card-value">App settings such as units of measurement and display preferences</span>
+                    </div>
+                </div>
+                <p>All data is stored in a local SQLite database on your device. <strong>No data is ever sent to any server or third party.</strong></p>
+            </div>
+
+            <!-- Section 2 -->
+            <div class="section">
+                <h2><span class="section-number">2</span> How Data Is Stored</h2>
+                <p>All information is stored locally on your device using a SQLite database within the app's sandboxed storage. This means:</p>
+                <ul>
+                    <li>Your data never leaves your device through the app</li>
+                    <li>There are no external servers, cloud services, or remote databases</li>
+                    <li>No user accounts or authentication are required</li>
+                    <li>Data persists on your device until you delete the app or clear its data</li>
+                </ul>
+                <p>If you use Apple's iCloud backup feature for your device, the app's data may be included in your device backup according to your iOS settings. This is managed by Apple, not by us.</p>
+            </div>
+
+            <!-- Section 3 -->
+            <div class="section">
+                <h2><span class="section-number">3</span> Camera &amp; Photo Library</h2>
+                <p>The app requests access to your device's camera and photo library solely for the purpose of capturing or selecting progress photos. These permissions are optional and the app functions fully without them.</p>
+                <ul>
+                    <li><strong>Camera:</strong> Used to take progress photos directly within the app</li>
+                    <li><strong>Photo Library:</strong> Used to select existing photos for progress tracking</li>
+                </ul>
+                <p>All photos are stored locally on your device. They are never uploaded, transmitted, or shared with any server or third party.</p>
+            </div>
+
+            <!-- Section 4 -->
+            <div class="section">
+                <h2><span class="section-number">4</span> Data Sharing &amp; Third Parties</h2>
+                <p>Grow With Me does <strong>not</strong> share any data with third parties. Specifically:</p>
+                <ul>
+                    <li><span class="no-data-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> None</span>&nbsp; No analytics or tracking SDKs</li>
+                    <li><span class="no-data-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> None</span>&nbsp; No advertising frameworks</li>
+                    <li><span class="no-data-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> None</span>&nbsp; No third-party data collection services</li>
+                    <li><span class="no-data-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> None</span>&nbsp; No data transmitted to external servers</li>
+                </ul>
+                <p>We do not sell, trade, or otherwise transfer your information to any party.</p>
+            </div>
+
+            <!-- Section 5 -->
+            <div class="section">
+                <h2><span class="section-number">5</span> Data Retention &amp; Deletion</h2>
+                <p>Since all data is stored locally on your device, you have full control:</p>
+                <ul>
+                    <li>Delete individual records through the app's interface</li>
+                    <li>Delete all app data by uninstalling the app from your device</li>
+                    <li>Manage device backups through your iOS settings</li>
+                </ul>
+                <p>Upon app deletion, all locally stored data is permanently removed from your device.</p>
+            </div>
+
+            <!-- Section 6 -->
+            <div class="section">
+                <h2><span class="section-number">6</span> Children's Privacy</h2>
+                <p>Grow With Me does not knowingly collect personal information from children under the age of 13 (or the applicable age in your jurisdiction). The app does not require any personal information to function, as all data is stored locally and no data is transmitted. If you are a parent or guardian and believe your child has provided personal information through external means, please contact us.</p>
+            </div>
+
+            <!-- Section 7 -->
+            <div class="section">
+                <h2><span class="section-number">7</span> Your Rights (GDPR)</h2>
+                <p>As all data is stored exclusively on your device and is never collected or processed by us, there is no personal data held on our servers. You inherently exercise full control over your data, including the rights to:</p>
+                <ul>
+                    <li><strong>Access:</strong> All data is visible directly within the app</li>
+                    <li><strong>Rectification:</strong> Edit any data at any time through the app</li>
+                    <li><strong>Erasure:</strong> Delete individual records or all data by uninstalling</li>
+                    <li><strong>Portability:</strong> Your data resides on your device and is under your control</li>
+                </ul>
+                <p>Since we do not collect or store your data on any external server, there is no data processing on our part that requires a legal basis under the GDPR.</p>
+            </div>
+
+            <!-- Section 8 -->
+            <div class="section">
+                <h2><span class="section-number">8</span> Changes to This Policy</h2>
+                <p>We may update this Privacy Policy from time to time. Any changes will be reflected on this page with an updated effective date. If the app introduces new features that affect data handling (such as optional cloud sync or subscriptions), we will update this policy accordingly and notify users through the app.</p>
+            </div>
+
+            <!-- Section 9 -->
+            <div class="section">
+                <h2><span class="section-number">9</span> Contact Us</h2>
+                <p>If you have any questions or concerns about this Privacy Policy or the app's data practices, please contact us:</p>
+                <div class="contact-card">
+                    <div class="contact-row">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        <span><strong>Developer:</strong> Mariusz Lala</span>
+                    </div>
+                    <div class="contact-row">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        <span><strong>Email:</strong> <a href="mailto:mariusz.team@outlook.com">mariusz.team@outlook.com</a></span>
+                    </div>
+                    <div class="contact-row">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/></svg>
+                        <span><strong>App:</strong> Grow With Me (com.mariuszlala.growwithme)</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- END ENGLISH -->
+
+        <!-- Language Separator (visible in "Both" mode) -->
+        <div id="lang-separator" class="lang-separator" style="display: none;">
+            <span>Wersja polska / Polish version</span>
+        </div>
+
+        <!-- ==================== POLISH VERSION ==================== -->
+        <div id="lang-pl" class="lang-section" lang="pl">
+
+            <header class="header">
+                <div class="header-icon">
+                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Dumbbell -->
+                        <rect x="14" y="42" width="10" height="22" rx="3" fill="#7C3AED"/>
+                        <rect x="24" y="48" width="52" height="10" rx="2" fill="#7C3AED" opacity="0.7"/>
+                        <rect x="76" y="42" width="10" height="22" rx="3" fill="#7C3AED"/>
+                        <rect x="8" y="46" width="6" height="14" rx="2" fill="#A78BFA"/>
+                        <rect x="86" y="46" width="6" height="14" rx="2" fill="#A78BFA"/>
+                        <!-- Upward arrow/chart -->
+                        <polyline points="22,70 40,52 55,60 80,28" stroke="#A78BFA" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <polyline points="66,28 80,28 80,42" stroke="#A78BFA" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <h1>Polityka Prywatno&#347;ci</h1>
+                <p class="subtitle">Grow With Me &mdash; Trener Fitness i Si&#322;owni</p>
+                <span class="effective-date">Data wej&#347;cia w &#380;ycie: 20 lutego 2026</span>
+            </header>
+
+            <div class="privacy-highlight">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                <p>Twoja prywatno&#347;&#263; jest naszym priorytetem. Grow With Me przechowuje wszystkie dane wy&#322;&#261;cznie na Twoim urz&#261;dzeniu. Nie zbieramy, nie przesy&#322;amy ani nie udost&#281;pniamy &#380;adnych danych osobowych. Bez kont, bez serwer&oacute;w, bez &#347;ledzenia.</p>
+            </div>
+
+            <!-- Section 1 -->
+            <div class="section">
+                <h2><span class="section-number">1</span> Jakie dane przechowujemy</h2>
+                <p>Grow With Me mo&#380;e przechowywa&#263; nast&#281;puj&#261;ce informacje, wprowadzone przez Ciebie, wy&#322;&#261;cznie na Twoim urz&#261;dzeniu:</p>
+                <div class="data-card">
+                    <div class="data-card-row">
+                        <span class="data-card-label">Dane trening&oacute;w</span>
+                        <span class="data-card-value">&#262;wiczenia, serie, powt&oacute;rzenia, ci&#281;&#380;ary i historia trening&oacute;w</span>
+                    </div>
+                    <div class="data-card-row">
+                        <span class="data-card-label">Pomiary cia&#322;a</span>
+                        <span class="data-card-value">Masa cia&#322;a, wymiary i inne wska&#378;niki fitness, kt&oacute;re zdecydujesz si&#281; rejestrowa&#263;</span>
+                    </div>
+                    <div class="data-card-row">
+                        <span class="data-card-label">Zdj&#281;cia post&#281;p&oacute;w</span>
+                        <span class="data-card-value">Zdj&#281;cia wykonane aparatem lub wybrane z biblioteki zdj&#281;&#263;</span>
+                    </div>
+                    <div class="data-card-row">
+                        <span class="data-card-label">Preferencje</span>
+                        <span class="data-card-value">Ustawienia aplikacji, takie jak jednostki miar i preferencje wy&#347;wietlania</span>
+                    </div>
+                </div>
+                <p>Wszystkie dane s&#261; przechowywane w lokalnej bazie danych SQLite na Twoim urz&#261;dzeniu. <strong>&#379;adne dane nigdy nie s&#261; wysy&#322;ane na &#380;aden serwer ani do os&oacute;b trzecich.</strong></p>
+            </div>
+
+            <!-- Section 2 -->
+            <div class="section">
+                <h2><span class="section-number">2</span> Jak przechowywane s&#261; dane</h2>
+                <p>Wszystkie informacje s&#261; przechowywane lokalnie na Twoim urz&#261;dzeniu w bazie danych SQLite w izolowanej przestrzeni aplikacji. Oznacza to, &#380;e:</p>
+                <ul>
+                    <li>Twoje dane nigdy nie opuszczaj&#261; urz&#261;dzenia za po&#347;rednictwem aplikacji</li>
+                    <li>Nie ma &#380;adnych zewn&#281;trznych serwer&oacute;w, us&#322;ug chmurowych ani zdalnych baz danych</li>
+                    <li>Nie jest wymagane tworzenie konta ani logowanie</li>
+                    <li>Dane pozostaj&#261; na urz&#261;dzeniu do momentu usuni&#281;cia aplikacji lub wyczyszczenia jej danych</li>
+                </ul>
+                <p>Je&#347;li korzystasz z funkcji kopii zapasowej iCloud firmy Apple, dane aplikacji mog&#261; zosta&#263; uwzgl&#281;dnione w kopii zapasowej urz&#261;dzenia zgodnie z ustawieniami iOS. Jest to zarz&#261;dzane przez Apple, nie przez nas.</p>
+            </div>
+
+            <!-- Section 3 -->
+            <div class="section">
+                <h2><span class="section-number">3</span> Aparat i biblioteka zdj&#281;&#263;</h2>
+                <p>Aplikacja prosi o dost&#281;p do aparatu i biblioteki zdj&#281;&#263; urz&#261;dzenia wy&#322;&#261;cznie w celu wykonywania lub wybierania zdj&#281;&#263; post&#281;p&oacute;w. Te uprawnienia s&#261; opcjonalne, a aplikacja dzia&#322;a w pe&#322;ni bez nich.</p>
+                <ul>
+                    <li><strong>Aparat:</strong> U&#380;ywany do wykonywania zdj&#281;&#263; post&#281;p&oacute;w bezpo&#347;rednio w aplikacji</li>
+                    <li><strong>Biblioteka zdj&#281;&#263;:</strong> U&#380;ywana do wybierania istniej&#261;cych zdj&#281;&#263; do &#347;ledzenia post&#281;p&oacute;w</li>
+                </ul>
+                <p>Wszystkie zdj&#281;cia s&#261; przechowywane lokalnie na Twoim urz&#261;dzeniu. Nigdy nie s&#261; przesy&#322;ane, transmitowane ani udost&#281;pniane &#380;adnemu serwerowi ani osobom trzecim.</p>
+            </div>
+
+            <!-- Section 4 -->
+            <div class="section">
+                <h2><span class="section-number">4</span> Udost&#281;pnianie danych i podmioty trzecie</h2>
+                <p>Grow With Me <strong>nie</strong> udost&#281;pnia &#380;adnych danych podmiotom trzecim. W szczeg&oacute;lno&#347;ci:</p>
+                <ul>
+                    <li><span class="no-data-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Brak</span>&nbsp; Brak SDK analitycznych lub &#347;ledz&#261;cych</li>
+                    <li><span class="no-data-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Brak</span>&nbsp; Brak framework&oacute;w reklamowych</li>
+                    <li><span class="no-data-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Brak</span>&nbsp; Brak us&#322;ug zbierania danych przez podmioty trzecie</li>
+                    <li><span class="no-data-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Brak</span>&nbsp; Brak transmisji danych na zewn&#281;trzne serwery</li>
+                </ul>
+                <p>Nie sprzedajemy, nie wymieniamy ani w &#380;aden inny spos&oacute;b nie przekazujemy Twoich informacji jakimkolwiek podmiotom.</p>
+            </div>
+
+            <!-- Section 5 -->
+            <div class="section">
+                <h2><span class="section-number">5</span> Przechowywanie i usuwanie danych</h2>
+                <p>Poniewa&#380; wszystkie dane s&#261; przechowywane lokalnie na Twoim urz&#261;dzeniu, masz pe&#322;n&#261; kontrol&#281;:</p>
+                <ul>
+                    <li>Usu&#324; poszczeg&oacute;lne rekordy przez interfejs aplikacji</li>
+                    <li>Usu&#324; wszystkie dane aplikacji, odinstalowuj&#261;c aplikacj&#281; z urz&#261;dzenia</li>
+                    <li>Zarz&#261;dzaj kopiami zapasowymi urz&#261;dzenia w ustawieniach iOS</li>
+                </ul>
+                <p>Po usuni&#281;ciu aplikacji wszystkie lokalnie przechowywane dane s&#261; trwale usuwane z urz&#261;dzenia.</p>
+            </div>
+
+            <!-- Section 6 -->
+            <div class="section">
+                <h2><span class="section-number">6</span> Prywatno&#347;&#263; dzieci</h2>
+                <p>Grow With Me &#347;wiadomie nie zbiera danych osobowych od dzieci poni&#380;ej 13 roku &#380;ycia (lub odpowiedniego wieku w danej jurysdykcji). Aplikacja nie wymaga &#380;adnych danych osobowych do dzia&#322;ania, poniewa&#380; wszystkie dane s&#261; przechowywane lokalnie i &#380;adne dane nie s&#261; przesy&#322;ane. Je&#347;li jeste&#347; rodzicem lub opiekunem i uwa&#380;asz, &#380;e Twoje dziecko dostarczy&#322;o dane osobowe za po&#347;rednictwem zewn&#281;trznych &#347;rodk&oacute;w, prosimy o kontakt.</p>
+            </div>
+
+            <!-- Section 7 -->
+            <div class="section">
+                <h2><span class="section-number">7</span> Twoje prawa (RODO)</h2>
+                <p>Poniewa&#380; wszystkie dane s&#261; przechowywane wy&#322;&#261;cznie na Twoim urz&#261;dzeniu i nigdy nie s&#261; przez nas zbierane ani przetwarzane, na naszych serwerach nie znajduj&#261; si&#281; &#380;adne dane osobowe. Masz pe&#322;n&#261; kontrol&#281; nad swoimi danymi, w tym prawa do:</p>
+                <ul>
+                    <li><strong>Dost&#281;pu:</strong> Wszystkie dane s&#261; widoczne bezpo&#347;rednio w aplikacji</li>
+                    <li><strong>Sprostowania:</strong> Edytuj dowolne dane w dowolnym momencie w aplikacji</li>
+                    <li><strong>Usuni&#281;cia:</strong> Usu&#324; poszczeg&oacute;lne rekordy lub wszystkie dane odinstalowuj&#261;c aplikacj&#281;</li>
+                    <li><strong>Przenoszenia:</strong> Twoje dane znajduj&#261; si&#281; na Twoim urz&#261;dzeniu i s&#261; pod Twoj&#261; kontrol&#261;</li>
+                </ul>
+                <p>Poniewa&#380; nie zbieramy ani nie przechowujemy Twoich danych na &#380;adnym zewn&#281;trznym serwerze, nie ma po naszej stronie przetwarzania danych, kt&oacute;re wymaga&#322;oby podstawy prawnej w ramach RODO.</p>
+            </div>
+
+            <!-- Section 8 -->
+            <div class="section">
+                <h2><span class="section-number">8</span> Zmiany w polityce</h2>
+                <p>Mo&#380;emy od czasu do czasu aktualizowa&#263; niniejsz&#261; Polityk&#281; Prywatno&#347;ci. Wszelkie zmiany zostan&#261; odzwierciedlone na tej stronie ze zaktualizowan&#261; dat&#261; wej&#347;cia w &#380;ycie. Je&#347;li aplikacja wprowadzi nowe funkcje wp&#322;ywaj&#261;ce na obs&#322;ug&#281; danych (takie jak opcjonalna synchronizacja w chmurze lub subskrypcje), zaktualizujemy t&#281; polityk&#281; odpowiednio i powiadomimy u&#380;ytkownik&oacute;w za po&#347;rednictwem aplikacji.</p>
+            </div>
+
+            <!-- Section 9 -->
+            <div class="section">
+                <h2><span class="section-number">9</span> Kontakt</h2>
+                <p>Je&#347;li masz jakiekolwiek pytania lub w&#261;tpliwo&#347;ci dotycz&#261;ce niniejszej Polityki Prywatno&#347;ci lub praktyk aplikacji w zakresie danych, skontaktuj si&#281; z nami:</p>
+                <div class="contact-card">
+                    <div class="contact-row">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        <span><strong>Deweloper:</strong> Mariusz Lala</span>
+                    </div>
+                    <div class="contact-row">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        <span><strong>E-mail:</strong> <a href="mailto:mariusz.team@outlook.com">mariusz.team@outlook.com</a></span>
+                    </div>
+                    <div class="contact-row">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/></svg>
+                        <span><strong>Aplikacja:</strong> Grow With Me (com.mariuszlala.growwithme)</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- END POLISH -->
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2026 Mariusz Lala. All rights reserved. / Wszelkie prawa zastrze&#380;one.</p>
+            <p style="margin-top: 6px;"><span class="bundle-id">com.mariuszlala.growwithme</span></p>
+        </footer>
+
+    </main>
+
+    <script>
+        function switchLang(lang) {
+            const en = document.getElementById('lang-en');
+            const pl = document.getElementById('lang-pl');
+            const sep = document.getElementById('lang-separator');
+            const btnEn = document.getElementById('btn-en');
+            const btnPl = document.getElementById('btn-pl');
+            const btnBoth = document.getElementById('btn-both');
+
+            // Reset all buttons
+            [btnEn, btnPl, btnBoth].forEach(btn => {
+                btn.classList.remove('active');
+                btn.setAttribute('aria-selected', 'false');
+            });
+
+            if (lang === 'en') {
+                en.classList.add('visible');
+                pl.classList.remove('visible');
+                sep.style.display = 'none';
+                btnEn.classList.add('active');
+                btnEn.setAttribute('aria-selected', 'true');
+                document.documentElement.lang = 'en';
+            } else if (lang === 'pl') {
+                en.classList.remove('visible');
+                pl.classList.add('visible');
+                sep.style.display = 'none';
+                btnPl.classList.add('active');
+                btnPl.setAttribute('aria-selected', 'true');
+                document.documentElement.lang = 'pl';
+            } else {
+                en.classList.add('visible');
+                pl.classList.add('visible');
+                sep.style.display = '';
+                btnBoth.classList.add('active');
+                btnBoth.setAttribute('aria-selected', 'true');
+                document.documentElement.lang = 'en';
+            }
+
+            // Scroll to top smoothly
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+
+</body>
+</html>
