@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Changelog & Roadmap — Grow With Me</title>
+    <meta name="description" content="Release notes and development roadmap for Grow With Me gym tracker app.">
+    <style>
+        :root {
+            --accent: #7C3AED;
+            --accent-light: #A78BFA;
+            --accent-bg: rgba(124, 58, 237, 0.08);
+            --bg: #0F1117;
+            --bg-secondary: #1A1D2B;
+            --bg-tertiary: #232740;
+            --text: #F3F4F6;
+            --text-secondary: #9CA3AF;
+            --border: #2D3348;
+            --card-bg: #1A1D2B;
+            --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            --green: #10B981;
+            --green-bg: rgba(16, 185, 129, 0.12);
+            --yellow: #F59E0B;
+            --yellow-bg: rgba(245, 158, 11, 0.12);
+            --blue: #3B82F6;
+            --blue-bg: rgba(59, 130, 246, 0.12);
+            --red: #EF4444;
+            --red-bg: rgba(239, 68, 68, 0.12);
+        }
+
+        @media (prefers-color-scheme: light) {
+            :root {
+                --bg: #FFFFFF;
+                --bg-secondary: #F9FAFB;
+                --bg-tertiary: #F3F4F6;
+                --text: #111827;
+                --text-secondary: #6B7280;
+                --border: #E5E7EB;
+                --card-bg: #FFFFFF;
+                --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+                --green-bg: rgba(16, 185, 129, 0.08);
+                --yellow-bg: rgba(245, 158, 11, 0.08);
+                --blue-bg: rgba(59, 130, 246, 0.08);
+                --red-bg: rgba(239, 68, 68, 0.08);
+            }
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ---- Navigation ---- */
+        .nav {
+            position: sticky; top: 0; z-index: 100;
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            background: rgba(15, 17, 23, 0.88);
+        }
+        @media (prefers-color-scheme: light) { .nav { background: rgba(255, 255, 255, 0.88); } }
+        .nav-inner {
+            max-width: 1100px; margin: 0 auto; padding: 14px 24px;
+            display: flex; align-items: center; justify-content: space-between; gap: 16px;
+        }
+        .nav-brand {
+            font-size: 15px; font-weight: 700; color: var(--accent);
+            display: flex; align-items: center; gap: 10px; text-decoration: none;
+        }
+        .nav-brand svg { width: 24px; height: 24px; flex-shrink: 0; }
+        .nav-links { display: flex; gap: 6px; flex-wrap: wrap; }
+        .nav-link {
+            padding: 6px 14px; font-size: 13px; font-weight: 500;
+            border: none; border-radius: 8px; cursor: pointer;
+            background: transparent; color: var(--text-secondary);
+            text-decoration: none; transition: all 0.2s ease; white-space: nowrap;
+        }
+        .nav-link:hover { color: var(--text); background: var(--bg-secondary); }
+        .nav-link.active { background: var(--accent); color: #FFFFFF; }
+        .nav-toggle {
+            display: none; background: none; border: none;
+            color: var(--text); cursor: pointer; padding: 4px;
+        }
+        @media (max-width: 640px) {
+            .nav-toggle { display: block; }
+            .nav-links {
+                display: none; position: absolute; top: 100%; left: 0; right: 0;
+                background: var(--bg); border-bottom: 1px solid var(--border);
+                padding: 12px 24px; flex-direction: column;
+            }
+            .nav-links.open { display: flex; }
+            .nav-link { padding: 10px 14px; }
+        }
+        .lang-switch {
+            display: flex; gap: 4px; background: var(--bg-tertiary);
+            border-radius: 8px; padding: 3px;
+        }
+        .lang-switch button {
+            padding: 5px 12px; font-size: 12px; font-weight: 500;
+            border: none; border-radius: 6px; cursor: pointer;
+            background: transparent; color: var(--text-secondary); transition: all 0.2s ease;
+        }
+        .lang-switch button.active { background: var(--accent); color: #FFFFFF; }
+        .lang-en, .lang-pl { display: none; }
+        .lang-en.visible, .lang-pl.visible { display: block; }
+        span.lang-en, span.lang-pl { display: none; }
+        span.lang-en.visible, span.lang-pl.visible { display: inline; }
+        .il-en, .il-pl { display: none; }
+        .il-en.visible, .il-pl.visible { display: initial; }
+
+        /* ---- Page Content ---- */
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 48px 24px 80px;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .page-header h1 {
+            font-size: 32px;
+            font-weight: 750;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+        }
+
+        .page-header p {
+            font-size: 16px;
+            color: var(--text-secondary);
+        }
+
+        /* ---- Tabs ---- */
+        .tabs {
+            display: flex;
+            gap: 4px;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            padding: 4px;
+            margin-bottom: 40px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 10px 16px;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background: transparent;
+            color: var(--text-secondary);
+            transition: all 0.2s ease;
+        }
+
+        .tab-btn.active {
+            background: var(--accent);
+            color: #FFFFFF;
+            box-shadow: 0 2px 8px rgba(124, 58, 237, 0.3);
+        }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* ---- Release Timeline ---- */
+        .release {
+            position: relative;
+            padding-left: 32px;
+            margin-bottom: 48px;
+        }
+
+        .release::before {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 8px;
+            bottom: -32px;
+            width: 2px;
+            background: var(--border);
+        }
+
+        .release:last-child::before {
+            bottom: 0;
+        }
+
+        .release-dot {
+            position: absolute;
+            left: 0;
+            top: 6px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 3px solid var(--bg);
+            box-shadow: 0 0 0 2px var(--accent);
+        }
+
+        .release.latest .release-dot {
+            background: var(--green);
+            box-shadow: 0 0 0 2px var(--green);
+        }
+
+        .release-header {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+        }
+
+        .release-version {
+            font-size: 22px;
+            font-weight: 750;
+            letter-spacing: -0.02em;
+        }
+
+        .release-date {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .release-tag {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .release-tag.latest {
+            background: var(--green-bg);
+            color: var(--green);
+        }
+
+        .release-description {
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .change-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .change-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 8px 0;
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .change-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+
+        .change-badge.new { background: var(--green-bg); color: var(--green); }
+        .change-badge.improved { background: var(--blue-bg); color: var(--blue); }
+        .change-badge.fixed { background: var(--yellow-bg); color: var(--yellow); }
+
+        /* ---- Roadmap ---- */
+        .roadmap-section {
+            margin-bottom: 40px;
+        }
+
+        .roadmap-quarter {
+            margin-bottom: 36px;
+        }
+
+        .roadmap-quarter h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quarter-badge {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .quarter-badge.current { background: var(--green-bg); color: var(--green); }
+        .quarter-badge.upcoming { background: var(--blue-bg); color: var(--blue); }
+        .quarter-badge.future { background: var(--accent-bg); color: var(--accent); }
+
+        .roadmap-items {
+            list-style: none;
+            padding: 0;
+        }
+
+        .roadmap-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 18px 20px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+
+        .roadmap-status {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .roadmap-status.done {
+            background: var(--green-bg);
+            color: var(--green);
+        }
+
+        .roadmap-status.progress {
+            background: var(--yellow-bg);
+            color: var(--yellow);
+        }
+
+        .roadmap-status.planned {
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+        }
+
+        .roadmap-status svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .roadmap-item h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .roadmap-item p {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .roadmap-note {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-top: 32px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .roadmap-note strong {
+            color: var(--text);
+        }
+
+        .roadmap-note a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .roadmap-note a:hover { text-decoration: underline; }
+
+        /* ---- Footer ---- */
+        .footer {
+            border-top: 1px solid var(--border);
+            padding: 32px 24px;
+            text-align: center;
+        }
+        .footer-inner {
+            max-width: 1100px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between;
+            flex-wrap: wrap; gap: 16px;
+        }
+        .footer-copy { font-size: 13px; color: var(--text-secondary); }
+        .footer-links { display: flex; gap: 20px; }
+        .footer-links a { font-size: 13px; color: var(--text-secondary); text-decoration: none; }
+        .footer-links a:hover { color: var(--accent); }
+        @media (max-width: 500px) { .footer-inner { flex-direction: column; } }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="14" y="42" width="10" height="22" rx="3" fill="#7C3AED"/>
+                    <rect x="24" y="48" width="52" height="10" rx="2" fill="#7C3AED" opacity="0.7"/>
+                    <rect x="76" y="42" width="10" height="22" rx="3" fill="#7C3AED"/>
+                    <rect x="8" y="46" width="6" height="14" rx="2" fill="#A78BFA"/>
+                    <rect x="86" y="46" width="6" height="14" rx="2" fill="#A78BFA"/>
+                    <polyline points="22,70 40,52 55,60 80,28" stroke="#A78BFA" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <polyline points="66,28 80,28 80,42" stroke="#A78BFA" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Grow With Me
+            </a>
+            <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            </button>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">
+                    <span class="il-en visible">Home</span><span class="il-pl">Strona</span>
+                </a>
+                <a href="changelog.html" class="nav-link active">
+                    <span class="il-en visible">Changelog</span><span class="il-pl">Zmiany</span>
+                </a>
+                <a href="support.html" class="nav-link">
+                    <span class="il-en visible">Support</span><span class="il-pl">Kontakt</span>
+                </a>
+                <a href="privacy-policy.html" class="nav-link">
+                    <span class="il-en visible">Privacy</span><span class="il-pl">Prywatno&#347;&#263;</span>
+                </a>
+                <div class="lang-switch">
+                    <button class="active" onclick="switchLang('en')" id="btn-en">EN</button>
+                    <button onclick="switchLang('pl')" id="btn-pl">PL</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+
+        <div class="page-header">
+            <h1>
+                <span class="lang-en visible">Changelog &amp; Roadmap</span>
+                <span class="lang-pl">Zmiany i plany rozwoju</span>
+            </h1>
+            <p>
+                <span class="lang-en visible">Follow what's new, what's improved, and what's coming next.</span>
+                <span class="lang-pl">&#346;led&#378; co nowego, co ulepszone i co planujemy dalej.</span>
+            </p>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('changelog')">
+                <span class="lang-en visible">Changelog</span>
+                <span class="lang-pl">Zmiany</span>
+            </button>
+            <button class="tab-btn" onclick="switchTab('roadmap')">
+                <span class="lang-en visible">Roadmap</span>
+                <span class="lang-pl">Plany rozwoju</span>
+            </button>
+        </div>
+
+        <!-- ==================== CHANGELOG TAB ==================== -->
+        <div id="tab-changelog" class="tab-content active">
+
+            <!-- Version 1.0.0 -->
+            <div class="release latest">
+                <div class="release-dot"></div>
+                <div class="release-header">
+                    <span class="release-version">1.0.0</span>
+                    <span class="release-tag latest">
+                        <span class="lang-en visible">Latest</span>
+                        <span class="lang-pl">Najnowsza</span>
+                    </span>
+                    <span class="release-date">
+                        <span class="lang-en visible">February 2026</span>
+                        <span class="lang-pl">Luty 2026</span>
+                    </span>
+                </div>
+                <p class="release-description">
+                    <span class="lang-en visible">First public release. Everything you need to track your gym workouts, monitor progress, and follow training plans.</span>
+                    <span class="lang-pl">Pierwsze publiczne wydanie. Wszystko czego potrzebujesz do &#347;ledzenia trening&oacute;w, monitorowania post&#281;p&oacute;w i realizacji plan&oacute;w.</span>
+                </p>
+                <ul class="change-list">
+                    <li class="change-item">
+                        <span class="change-badge new">
+                            <span class="lang-en visible">New</span>
+                            <span class="lang-pl">Nowe</span>
+                        </span>
+                        <span>
+                            <span class="lang-en visible">Dashboard with workout stats, recent records, and training frequency charts</span>
+                            <span class="lang-pl">Dashboard ze statystykami trening&oacute;w, rekordami i wykresami cz&#281;stotliwo&#347;ci</span>
+                        </span>
+                    </li>
+                    <li class="change-item">
+                        <span class="change-badge new">
+                            <span class="lang-en visible">New</span>
+                            <span class="lang-pl">Nowe</span>
+                        </span>
+                        <span>
+                            <span class="lang-en visible">Two workout modes: Classic Mode (full control) and Focus Mode (glove-friendly)</span>
+                            <span class="lang-pl">Dwa tryby treningu: Tryb Klasyczny (pe&#322;na kontrola) i Focus Mode (na r&#281;kawiczki)</span>
+                        </span>
+                    </li>
+                    <li class="change-item">
+                        <span class="change-badge new">
+                            <span class="lang-en visible">New</span>
+                            <span class="lang-pl">Nowe</span>
+                        </span>
+                        <span>
+                            <span class="lang-en visible">10 built-in training plans from beginner to advanced (2-6 days/week)</span>
+                            <span class="lang-pl">10 wbudowanych plan&oacute;w treningowych od pocz&#261;tkuj&#261;cych do zaawansowanych (2-6 dni/tyg.)</span>
+                        </span>
+                    </li>
+                    <li class="change-item">
+                        <span class="change-badge new">
+                            <span class="lang-en visible">New</span>
+                            <span class="lang-pl">Nowe</span>
+                        </span>
+                        <span>
+                            <span class="lang-en visible">100+ exercises with step-by-step instructions and tips</span>
+                            <span class="lang-pl">100+ &#263;wicze&#324; z instrukcjami krok po kroku i wskaz&oacute;wkami</span>
+                        </span>
+                    </li>
+                    <li class="change-item">
+                        <span class="change-badge new">
+                            <span class="lang-en visible">New</span>
+                            <span class="lang-pl">Nowe</span>
+                        </span>
+                        <span>
+                            <span class="lang-en visible">Strength analytics: 1RM progression, weight charts, exercise sparklines, muscle group volume</span>
+                            <span class="lang-pl">Analityka si&#322;y: progresja 1RM, wykresy ci&#281;&#380;ar&oacute;w, sparkline &#263;wicze&#324;, obj&#281;to&#347;&#263; grup mi&#281;&#347;niowych</span>
+                        </span>
+                    </li>
+                    <li class="change-item">
+                        <span class="change-badge new">
+                            <span class="lang-en visible">New</span>
+                            <span class="lang-pl">Nowe</span>
+                        </span>
+                        <span>
+                            <span class="lang-en visible">Body measurements tracking with sparkline trends</span>
+                            <span class="lang-pl">&#346;ledzenie pomiar&oacute;w cia&#322;a z wykresami trend&oacute;w</span>
+                        </span>
+                    </li>
+                    <li class="change-item">
+                        <span class="change-badge new">
+                            <span class="lang-en visible">New</span>
+                            <span class="lang-pl">Nowe</span>
+                        </span>
+                        <span>
+                            <span class="lang-en visible">Progress photos with timeline and side-by-side comparison</span>
+                            <span class="lang-pl">Zdj&#281;cia post&#281;p&oacute;w z osi&#261; czasu i por&oacute;wnaniem obok siebie</span>
+                        </span>
+                    </li>
+                    <li class="change-item">
+                        <span class="change-badge new">
+                            <span class="lang-en visible">New</span>
+                            <span class="lang-pl">Nowe</span>
+                        </span>
+                        <span>
+                            <span class="lang-en visible">Rest timer with sound and vibration alerts</span>
+                            <span class="lang-pl">Timer odpoczynku z d&#378;wi&#281;kiem i wibracj&#261;</span>
+                        </span>
+                    </li>
+                    <li class="change-item">
+                        <span class="change-badge new">
+                            <span class="lang-en visible">New</span>
+                            <span class="lang-pl">Nowe</span>
+                        </span>
+                        <span>
+                            <span class="lang-en visible">Personal record detection and celebration</span>
+                            <span class="lang-pl">Wykrywanie i celebrowanie rekord&oacute;w osobistych</span>
+                        </span>
+                    </li>
+                    <li class="change-item">
+                        <span class="change-badge new">
+                            <span class="lang-en visible">New</span>
+                            <span class="lang-pl">Nowe</span>
+                        </span>
+                        <span>
+                            <span class="lang-en visible">Workout history with calendar view</span>
+                            <span class="lang-pl">Historia trening&oacute;w z widokiem kalendarza</span>
+                        </span>
+                    </li>
+                    <li class="change-item">
+                        <span class="change-badge new">
+                            <span class="lang-en visible">New</span>
+                            <span class="lang-pl">Nowe</span>
+                        </span>
+                        <span>
+                            <span class="lang-en visible">Polish and English interface, dark/light/system theme, metric/imperial units</span>
+                            <span class="lang-pl">Interfejs po polsku i angielsku, motyw ciemny/jasny/systemowy, jednostki metryczne/imperialne</span>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Placeholder for future versions -->
+            <!--
+            <div class="release">
+                <div class="release-dot"></div>
+                <div class="release-header">
+                    <span class="release-version">1.1.0</span>
+                    <span class="release-date">March 2026</span>
+                </div>
+                <p class="release-description">...</p>
+                <ul class="change-list">
+                    <li class="change-item">
+                        <span class="change-badge improved">Improved</span>
+                        <span>...</span>
+                    </li>
+                </ul>
+            </div>
+            -->
+
+        </div>
+
+        <!-- ==================== ROADMAP TAB ==================== -->
+        <div id="tab-roadmap" class="tab-content">
+
+            <div class="roadmap-section">
+
+                <!-- Q1 2026 -->
+                <div class="roadmap-quarter">
+                    <h3>
+                        Q1 2026
+                        <span class="quarter-badge current">
+                            <span class="lang-en visible">Current</span>
+                            <span class="lang-pl">Teraz</span>
+                        </span>
+                    </h3>
+                    <ul class="roadmap-items">
+                        <li class="roadmap-item">
+                            <div class="roadmap-status done">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            </div>
+                            <div>
+                                <h4 class="lang-en visible">App Store Launch (v1.0)</h4>
+                                <h4 class="lang-pl">Premiera w App Store (v1.0)</h4>
+                                <p class="lang-en visible">First public release with all core features.</p>
+                                <p class="lang-pl">Pierwsze publiczne wydanie ze wszystkimi kluczowymi funkcjami.</p>
+                            </div>
+                        </li>
+                        <li class="roadmap-item">
+                            <div class="roadmap-status planned">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/></svg>
+                            </div>
+                            <div>
+                                <h4 class="lang-en visible">Bug Fixes &amp; Polish</h4>
+                                <h4 class="lang-pl">Poprawki b&#322;&#281;d&oacute;w i szlify</h4>
+                                <p class="lang-en visible">Address user feedback from the initial launch.</p>
+                                <p class="lang-pl">Reakcja na feedback u&#380;ytkownik&oacute;w z premiery.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Q2 2026 -->
+                <div class="roadmap-quarter">
+                    <h3>
+                        Q2 2026
+                        <span class="quarter-badge upcoming">
+                            <span class="lang-en visible">Upcoming</span>
+                            <span class="lang-pl">Nadchodz&#261;ce</span>
+                        </span>
+                    </h3>
+                    <ul class="roadmap-items">
+                        <li class="roadmap-item">
+                            <div class="roadmap-status planned">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/></svg>
+                            </div>
+                            <div>
+                                <h4 class="lang-en visible">Social Features</h4>
+                                <h4 class="lang-pl">Funkcje spo&#322;eczno&#347;ciowe</h4>
+                                <p class="lang-en visible">Share your progress, follow friends, and motivate each other. Compare stats, celebrate PRs together, and build a training community.</p>
+                                <p class="lang-pl">Dziel si&#281; post&#281;pami, &#347;led&#378; znajomych i motywujcie si&#281; nawzajem. Por&oacute;wnuj statystyki, &#347;wi&#281;tuj rekordy i buduj treningow&#261; spo&#322;eczno&#347;&#263;.</p>
+                            </div>
+                        </li>
+                        <li class="roadmap-item">
+                            <div class="roadmap-status planned">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/></svg>
+                            </div>
+                            <div>
+                                <h4 class="lang-en visible">AI Training Assistant</h4>
+                                <h4 class="lang-pl">Asystent AI</h4>
+                                <p class="lang-en visible">Smart suggestions for weights, reps, and rest times based on your training history. Personalized tips to help you progress faster.</p>
+                                <p class="lang-pl">Inteligentne podpowiedzi ci&#281;&#380;ar&oacute;w, powt&oacute;rze&#324; i odpoczynku na podstawie Twojej historii trening&oacute;w. Spersonalizowane wskaz&oacute;wki pomagaj&#261;ce szybciej si&#281; rozwija&#263;.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Future -->
+                <div class="roadmap-quarter">
+                    <h3>
+                        <span class="lang-en visible">Future</span>
+                        <span class="lang-pl">Przysz&#322;o&#347;&#263;</span>
+                        <span class="quarter-badge future">
+                            <span class="lang-en visible">Exploring</span>
+                            <span class="lang-pl">Eksplorujemy</span>
+                        </span>
+                    </h3>
+                    <ul class="roadmap-items">
+                        <li class="roadmap-item">
+                            <div class="roadmap-status planned">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/></svg>
+                            </div>
+                            <div>
+                                <h4 class="lang-en visible">Trainer App</h4>
+                                <h4 class="lang-pl">Aplikacja dla trenera</h4>
+                                <p class="lang-en visible">A dedicated tool for personal trainers to create and assign training plans to their clients. Track their progress remotely.</p>
+                                <p class="lang-pl">Dedykowane narz&#281;dzie dla trener&oacute;w personalnych do tworzenia plan&oacute;w treningowych i przypisywania ich podopiecznym. &#346;led&#378; ich post&#281;py zdalnie.</p>
+                            </div>
+                        </li>
+                        <li class="roadmap-item">
+                            <div class="roadmap-status planned">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/></svg>
+                            </div>
+                            <div>
+                                <h4 class="lang-en visible">Data Export &amp; Cloud Sync</h4>
+                                <h4 class="lang-pl">Eksport danych i synchronizacja</h4>
+                                <p class="lang-en visible">Export your data to CSV/JSON and optional iCloud sync across your Apple devices.</p>
+                                <p class="lang-pl">Eksportuj dane do CSV/JSON i opcjonalna synchronizacja iCloud mi&#281;dzy urz&#261;dzeniami Apple.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="roadmap-note">
+                <strong>
+                    <span class="lang-en visible">Have a feature idea?</span>
+                    <span class="lang-pl">Masz pomys&#322; na funkcj&#281;?</span>
+                </strong><br>
+                <span class="lang-en visible">The roadmap is shaped by your feedback. <a href="support.html">Let us know</a> what you'd like to see next!</span>
+                <span class="lang-pl">Roadmapa jest kszta&#322;towana przez Tw&oacute;j feedback. <a href="support.html">Powiedz nam</a> co chcia&#322;by&#347; zobaczy&#263;!</span>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-copy">&copy; 2026 Mariusz Lala. <span class="lang-en visible">All rights reserved.</span><span class="lang-pl">Wszelkie prawa zastrze&#380;one.</span></div>
+            <div class="footer-links">
+                <a href="index.html"><span class="lang-en visible">Home</span><span class="lang-pl">Strona</span></a>
+                <a href="support.html"><span class="lang-en visible">Support</span><span class="lang-pl">Kontakt</span></a>
+                <a href="privacy-policy.html"><span class="lang-en visible">Privacy Policy</span><span class="lang-pl">Prywatno&#347;&#263;</span></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+                btn.classList.toggle('active', (tab === 'changelog' && i === 0) || (tab === 'roadmap' && i === 1));
+            });
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.getElementById('tab-' + tab).classList.add('active');
+        }
+
+        function switchLang(lang) {
+            const enEls = document.querySelectorAll('.lang-en, .il-en');
+            const plEls = document.querySelectorAll('.lang-pl, .il-pl');
+            const btnEn = document.getElementById('btn-en');
+            const btnPl = document.getElementById('btn-pl');
+            if (lang === 'pl') {
+                enEls.forEach(el => el.classList.remove('visible'));
+                plEls.forEach(el => el.classList.add('visible'));
+                btnEn.classList.remove('active'); btnPl.classList.add('active');
+                document.documentElement.lang = 'pl';
+            } else {
+                plEls.forEach(el => el.classList.remove('visible'));
+                enEls.forEach(el => el.classList.add('visible'));
+                btnPl.classList.remove('active'); btnEn.classList.add('active');
+                document.documentElement.lang = 'en';
+            }
+            localStorage.setItem('gwm-lang', lang);
+        }
+        const savedLang = localStorage.getItem('gwm-lang');
+        if (savedLang) switchLang(savedLang);
+    </script>
+
+</body>
+</html>
